@@ -40,24 +40,24 @@ public class Paddle_control : MonoBehaviour {
     public void startLeft()
     {
         movingLeft = true;
-        //Debug.Log("start Left");
+        Debug.Log("start Left");
     }
 
     public void stopLeft()
     {
         movingLeft = false;
-        //Debug.Log("stop Left");
+        Debug.Log("stop Left");
     }
 
     public void startRight()
     {
         movingRight = true;
-       // Debug.Log("start Right");
+        Debug.Log("start Right");
     }
 
     public void stopRight()
     {
         movingRight = false;
-        //Debug.Log("stop Right");
+        Debug.Log("stop Right");
     }
 }

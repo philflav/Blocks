@@ -205,7 +205,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 682303588}
+        - m_Target: {fileID: 682303587}
           m_MethodName: startLeft
           m_Mode: 1
           m_Arguments:
@@ -222,7 +222,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 682303588}
+        - m_Target: {fileID: 682303587}
           m_MethodName: stopLeft
           m_Mode: 1
           m_Arguments:
@@ -245,7 +245,6 @@ GameObject:
   m_Component:
   - component: {fileID: 682303590}
   - component: {fileID: 682303589}
-  - component: {fileID: 682303588}
   - component: {fileID: 682303587}
   m_Layer: 0
   m_Name: Paddle
@@ -265,19 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c278e1b5af4860a44bb3fdd302a3cd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddle_speed: 0
---- !u!114 &682303588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 682303586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c278e1b5af4860a44bb3fdd302a3cd83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paddle_speed: 0
+  paddle_speed: 7
+  direction: 0
 --- !u!212 &682303589
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -429,7 +417,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 682303588}
+        - m_Target: {fileID: 682303587}
           m_MethodName: startRight
           m_Mode: 1
           m_Arguments:
@@ -446,7 +434,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 682303588}
+        - m_Target: {fileID: 682303587}
           m_MethodName: stopRight
           m_Mode: 1
           m_Arguments:
