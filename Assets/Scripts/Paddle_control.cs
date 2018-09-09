@@ -10,6 +10,8 @@ public class Paddle_control : MonoBehaviour {
     public Rigidbody2D leftLimit;
     public Rigidbody2D rightLimit;
 
+    public BallController bc;
+
 
     public float paddle_speed;
     public int direction;
@@ -62,6 +64,7 @@ public class Paddle_control : MonoBehaviour {
     {
         movingLeft = false;
         //Debug.Log("stop Left");
+        if(!bc.ballActive && movingRight)bc.activateBall();
     }
 
     public void startRight()
@@ -73,6 +76,7 @@ public class Paddle_control : MonoBehaviour {
     public void stopRight()
     {
         movingRight = false;
-       // Debug.Log("stop Right");
+        // Debug.Log("stop Right");
+        if (!bc.ballActive && movingLeft) bc.activateBall();
     }
 }
