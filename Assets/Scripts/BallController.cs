@@ -9,6 +9,7 @@ public class BallController : MonoBehaviour {
 
     public float VSpeed;
 
+    private GameManager gm;
     private Rigidbody2D rb;
 
     public bool ballActive;
@@ -18,6 +19,7 @@ public class BallController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        gm = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
 
         rb.velocity = new Vector2(maxHBallSpeed,VSpeed);
@@ -33,6 +35,11 @@ public class BallController : MonoBehaviour {
         {
             rb.velocity = Vector2.zero;
             rb.position = startPoint.position;
+
+            if(Input.GetKey(KeyCode.Space))
+            {
+                activateBall();
+            }
                 
         }
         
@@ -50,11 +57,24 @@ public class BallController : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionExit2D(Collision2D other)
     {
-    
-       
 
+        if (other.gameObject.tag == "Brick")
+        {
+            Destroy(other.gameObject);
+        }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Respawn")
+        {
+            ballActive = false;
+            gm.RespawnBall();
+
+        }
     }
 
     public void activateBall()
