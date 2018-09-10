@@ -25,7 +25,7 @@ public class BrickController : MonoBehaviour {
 
         GameObject scoreObject = (GameObject)Instantiate(scoreEffect, transform.position, transform.rotation);
         scoreObject.GetComponent<ScoreEffect>().scoreText.text = ""+BrickValue;
-
+        gm.AddScore(BrickValue);
         Destroy(gameObject);
 
     }

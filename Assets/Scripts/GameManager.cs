@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
     public Text timeRemaining;
     public float gameTime;
 
+    public Text scoreText;
+
     private float time;
 
     public GameObject gameOverScreen;
@@ -20,6 +22,7 @@ public class GameManager : MonoBehaviour {
 
 
     private BallController ball;
+    private int gamescore;
 
     public bool gameActive;
 
@@ -31,12 +34,16 @@ public class GameManager : MonoBehaviour {
         livesText.text = "Lives: " + livesRemaining;
         time = gameTime;
         timeRemaining.text = "Time: " + time;
+        gamescore = 0;
+        scoreText.text = "";
     }
 
     private void Update()
     {
         //countdown timer for game
         time = time - Time.deltaTime;
+
+        scoreText.text = "Score: " + gamescore;
 
         if (time < 0)
         {
@@ -79,7 +86,8 @@ public class GameManager : MonoBehaviour {
     }
     public void AddScore(int value)
     {
-
+        gamescore += value;
+        Debug.Log(gamescore);
     }
 
     

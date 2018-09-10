@@ -63,7 +63,7 @@ public class BallController : MonoBehaviour {
 
         if (other.gameObject.tag == "Brick")
         {
-            //destroy the brick controller game compoent to trigger score effect
+            //destroy the brick controller game component to trigger score effect
             other.gameObject.GetComponent<BrickController>().DestroyBrick();
             
         }
