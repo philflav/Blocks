@@ -65,9 +65,15 @@ public class BallController : MonoBehaviour {
         {
             //destroy the brick controller game component to trigger score effect
             other.gameObject.GetComponent<BrickController>().DestroyBrick();
-            
-        }
+            //reset vertical velocity to max after collision for better playability
+            rb.velocity = new Vector2(rb.velocity.x, VSpeed*Mathf.Sign(rb.velocity.y));
 
+        }
+        if (other.gameObject.tag == "Wall")
+        {
+            //reset horizontal velocity to max after collision to stop ball sticking to walls
+            rb.velocity = new Vector2(VSpeed * Mathf.Sign(rb.velocity.x), rb.velocity.y);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
