@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class BrickController : MonoBehaviour {
 
-    public int brickValue;
+    public GameObject scoreEffect;
+    public int BrickValue;
+
+    private GameManager gm;
 
 	// Use this for initialization
 	void Start () {
+        gm = FindObjectOfType<GameManager>();
 		
 	}
 	
@@ -15,4 +19,14 @@ public class BrickController : MonoBehaviour {
 	void Update () {
 		
 	}
+    public void DestroyBrick()
+    {
+        //
+
+        GameObject scoreObject = (GameObject)Instantiate(scoreEffect, transform.position, transform.rotation);
+        scoreObject.GetComponent<ScoreEffect>().scoreText.text = ""+BrickValue;
+
+        Destroy(gameObject);
+
+    }
 }

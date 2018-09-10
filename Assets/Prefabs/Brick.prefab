@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 61125895164701418}
   - component: {fileID: 114506507750616532}
   - component: {fileID: 212994688545310162}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Brick
   m_TagString: Brick
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1136673225806248}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 1.56, z: 0.0000000074504}
+  m_LocalPosition: {x: -3.5, y: 1.35, z: 0.0000000074504}
   m_LocalScale: {x: 2.0952039, y: 2.0952039, z: 2.0952039}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,7 +54,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.02792085, y: 0.01994346}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -65,7 +65,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.33788037, y: 0.33788058}
   m_EdgeRadius: 0
 --- !u!114 &114506507750616532
 MonoBehaviour:
@@ -78,7 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aad8b314d2023d42b294c7a08e4ec28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brickValue: 30
+  scoreEffect: {fileID: 1539571821242360, guid: 49fbace0652d4a6448b27dd374a054bf,
+    type: 2}
 --- !u!212 &212994688545310162
 SpriteRenderer:
   m_ObjectHideFlags: 1

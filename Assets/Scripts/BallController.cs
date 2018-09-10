@@ -10,6 +10,7 @@ public class BallController : MonoBehaviour {
     public float VSpeed;
 
     private GameManager gm;
+    private BrickController bc;
     private Rigidbody2D rb;
 
     public bool ballActive;
@@ -62,7 +63,9 @@ public class BallController : MonoBehaviour {
 
         if (other.gameObject.tag == "Brick")
         {
-            Destroy(other.gameObject);
+            //destroy the brick controller game compoent to trigger score effect
+            other.gameObject.GetComponent<BrickController>().DestroyBrick();
+            
         }
 
     }
