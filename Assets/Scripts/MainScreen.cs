@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MainScreen : MonoBehaviour {
 
-    private float countDown = 10f;
+    private float countDown = 5f;
 
     public Text countDownText;
     public int startLives;
@@ -22,6 +22,7 @@ public class MainScreen : MonoBehaviour {
     {
         PlayerPrefs.SetInt("currentScore", 0);
         PlayerPrefs.SetInt("currentLives", 4);
+        SceneManager.LoadScene("Main");
     }
     public void ResetHiScore()
     {

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public float speed;
-    public float gameTime;
+    public float levelTime;
 
     public Text livesText;
     private int livesRemaining;
@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
 
     public GameObject gameOverScreen;
     public GameObject levelCompleteScreen;
+    public string nextLevel;
 
 
     private BallController ball;
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour {
     private int hiscore;
 
     public bool gameActive;
+
+
 
     public AudioSource gameOver;
     public AudioSource ballLost;
@@ -42,11 +45,12 @@ public class GameManager : MonoBehaviour {
         livesText.gameObject.SetActive(true);
         timeRemaining.gameObject.SetActive(true);
         livesText.text = "Lives: " + livesRemaining;
-        time = gameTime;
+        time = levelTime;
         timeRemaining.text = "Time: " + time;
         scoreText.text = "";
         hiscoreText.text = "HiScore: " + hiscore;
         gameOver.Stop();
+        ball.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -78,6 +82,13 @@ public class GameManager : MonoBehaviour {
             levelCompleteScreen.SetActive(true);
             ball.gameObject.SetActive(false);
         }
+    }
+
+    public void NextLevel()
+    {
+        PlayerPrefs.SetInt("currentScore", gamescore); //save current score to start next level
+        PlayerPrefs.SetInt("currentLives", livesRemaining + 2);//add two lives for getting to next level
+        SceneManager.LoadScene(nextLevel);
     }
 
    
