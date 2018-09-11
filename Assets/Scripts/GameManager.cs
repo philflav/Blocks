@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour {
 
     public bool gameActive;
 
+    public AudioSource gameOver;
+    public AudioSource ballLost;
+
     private void Start()
     {
         ball = FindObjectOfType<BallController>();
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour {
         timeRemaining.text = "Time: " + time;
         gamescore = 0;
         scoreText.text = "";
+        gameOver.Stop();
     }
 
     private void Update()
@@ -49,6 +53,10 @@ public class GameManager : MonoBehaviour {
         if (time < 0)
         {
             ball.gameObject.SetActive(false);
+            if (!gameOverScreen.activeInHierarchy) //check we have not already played gameover sound
+            {
+                gameOver.Play();
+            }
             gameOverScreen.SetActive(true);
             livesText.gameObject.SetActive(false);
         }
@@ -66,8 +74,10 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+   
+
     public void RespawnBall()
-    {
+    {   
         gameActive = false;
         livesRemaining -= 1;
 
@@ -77,10 +87,12 @@ public class GameManager : MonoBehaviour {
             ball.gameObject.SetActive(false);
             gameOverScreen.SetActive(true);
             timeRemaining.gameObject.SetActive(false);
+            gameOver.Play();
 
         }
         else
         {
+        ballLost.Play();
         livesText.text = "Lives: " + livesRemaining;
         }
 
@@ -88,7 +100,6 @@ public class GameManager : MonoBehaviour {
     public void AddScore(int value)
     {
         gamescore += value;
-        Debug.Log(gamescore);
     }
 
     public void Quit()

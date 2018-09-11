@@ -12,6 +12,8 @@ public class Paddle_control : MonoBehaviour {
 
     public BallController bc;
 
+ 
+
 
     public float paddle_speed;
     public int direction;
@@ -77,6 +79,6 @@ public class Paddle_control : MonoBehaviour {
     {
         movingRight = false;
         // Debug.Log("stop Right");
-        if (!bc.ballActive && movingLeft) bc.activateBall();
+        if (!bc.ballActive && movingLeft)bc.activateBall();
     }
 }

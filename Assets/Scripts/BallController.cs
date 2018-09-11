@@ -13,6 +13,8 @@ public class BallController : MonoBehaviour {
     private BrickController bc;
     private Rigidbody2D rb;
 
+    public AudioSource ballBounce;
+
     public bool ballActive;
 
     public Transform startPoint;
@@ -22,11 +24,7 @@ public class BallController : MonoBehaviour {
 
         gm = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
-
-        rb.velocity = new Vector2(maxHBallSpeed,VSpeed);
-
-
-		
+               
 	}
 
     // Update is called once per frame
@@ -73,6 +71,11 @@ public class BallController : MonoBehaviour {
         {
             //reset horizontal velocity to max after collision to stop ball sticking to walls
             rb.velocity = new Vector2(VSpeed * Mathf.Sign(rb.velocity.x), rb.velocity.y);
+            ballBounce.Play();
+        }
+        if (other.gameObject.tag == "Player")
+        {
+            ballBounce.Play();
         }
     }
 
@@ -89,7 +92,7 @@ public class BallController : MonoBehaviour {
     public void activateBall()
     {
         ballActive = true;
-        rb.velocity = new Vector2(VSpeed, VSpeed);
+        rb.velocity = new Vector2(Random.Range(-VSpeed, VSpeed), VSpeed);
     }
 
   
