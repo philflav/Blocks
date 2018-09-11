@@ -7,14 +7,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public float speed;
-
-    public Text livesText;
-    public int livesRemaining;
-
-    public Text timeRemaining;
     public float gameTime;
 
+    public Text livesText;
+    private int livesRemaining;
+
+    public Text timeRemaining;
+
     public Text scoreText;
+    public Text hiscoreText;
 
     private float time;
 
@@ -24,22 +25,27 @@ public class GameManager : MonoBehaviour {
 
     private BallController ball;
     private int gamescore;
+    private int hiscore;
 
     public bool gameActive;
 
     public AudioSource gameOver;
     public AudioSource ballLost;
+    public AudioSource hiscoreSound;
 
     private void Start()
     {
+        livesRemaining = PlayerPrefs.GetInt("currentLives");
+        gamescore = PlayerPrefs.GetInt("currentScore");
+        hiscore = PlayerPrefs.GetInt("hiscore");
         ball = FindObjectOfType<BallController>();
         livesText.gameObject.SetActive(true);
         timeRemaining.gameObject.SetActive(true);
         livesText.text = "Lives: " + livesRemaining;
         time = gameTime;
         timeRemaining.text = "Time: " + time;
-        gamescore = 0;
         scoreText.text = "";
+        hiscoreText.text = "HiScore: " + hiscore;
         gameOver.Stop();
     }
 
@@ -95,11 +101,20 @@ public class GameManager : MonoBehaviour {
         ballLost.Play();
         livesText.text = "Lives: " + livesRemaining;
         }
+        PlayerPrefs.SetInt("currentLives", livesRemaining);
+        PlayerPrefs.SetInt("currentScore", gamescore);
 
     }
     public void AddScore(int value)
     {
         gamescore += value;
+        if (gamescore > hiscore)
+        {
+            hiscore = gamescore;
+            PlayerPrefs.SetInt("hiscore", hiscore);
+            hiscoreText.text = "HiScore: " + hiscore;
+            hiscoreSound.Play();
+        }
     }
 
     public void Quit()

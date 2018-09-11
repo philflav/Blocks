@@ -9,12 +9,26 @@ public class MainScreen : MonoBehaviour {
     private float countDown = 10f;
 
     public Text countDownText;
+    public int startLives;
+    public AudioSource hiscoreSound;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
+    void Start () {
+        PlayerPrefs.SetInt("currentScore", 0);
+        PlayerPrefs.SetInt("currentLives", 4);
+    }
 	
+    public void NewGame()
+    {
+        PlayerPrefs.SetInt("currentScore", 0);
+        PlayerPrefs.SetInt("currentLives", 4);
+    }
+    public void ResetHiScore()
+    {
+        PlayerPrefs.SetInt("hiscore", 0);
+        hiscoreSound.Play();
+    }
+
 	// Update is called once per frame
 	void Update () {
 
