@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour {
     private int gamescore;
     private int hiscore;
 
+    private GoogleMobileAdsDemo Ad;
+
     public bool gameActive;
 
 
@@ -41,6 +43,9 @@ public class GameManager : MonoBehaviour {
         livesRemaining = PlayerPrefs.GetInt("currentLives");
         gamescore = PlayerPrefs.GetInt("currentScore");
         hiscore = PlayerPrefs.GetInt("hiscore");
+        //load up banner Ad 
+        Ad = FindObjectOfType<GoogleMobileAdsDemo>();
+        Ad.RequestBanner();
         ball = FindObjectOfType<BallController>();
         livesText.gameObject.SetActive(true);
         timeRemaining.gameObject.SetActive(true);
@@ -55,6 +60,10 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
+        if (Ad.interstitial.IsLoaded())
+        {
+            Ad.interstitial.Show();
+        }
         //countdown timer for game
         time = time - Time.deltaTime;
 

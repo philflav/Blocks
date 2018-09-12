@@ -4115,8 +4115,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1794354141}
-        m_MethodName: Quit
+      - m_Target: {fileID: 1794354142}
+        m_MethodName: RequestInterstitial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5304,6 +5304,7 @@ GameObject:
   - component: {fileID: 1794354139}
   - component: {fileID: 1794354138}
   - component: {fileID: 1794354141}
+  - component: {fileID: 1794354142}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5395,6 +5396,17 @@ MonoBehaviour:
   gameOver: {fileID: 1400448364}
   ballLost: {fileID: 524709163}
   hiscoreSound: {fileID: 1561898338}
+--- !u!114 &1794354142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1794354137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79ec82e0e57ba94fb6a089fe23c4139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1797411026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4750742119005866, guid: b1a2b3fdec49a584a8485b4bf5790b47,
