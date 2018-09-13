@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour {
         livesText.text = "Lives: " + livesRemaining;
         time = levelTime;
         timeRemaining.text = "Time: " + time;
-        scoreText.text = "";
+        scoreText.text = "Score: " + gamescore; ;
         hiscoreText.text = "HiScore: " + hiscore;
         gameOver.Stop();
         ball.gameObject.SetActive(true);
@@ -60,10 +60,6 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Ad.interstitial.IsLoaded())
-        {
-            Ad.interstitial.Show();
-        }
         //countdown timer for game
         time = time - Time.deltaTime;
 

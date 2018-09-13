@@ -12,9 +12,11 @@ public class GoogleMobileAdsDemo : MonoBehaviour
    
     public void RequestBanner()
     {
+        if (Application.internetReachability != NetworkReachability.NotReachable) //only show ads when online
+        {
 #if UNITY_ANDROID
-        string appId = "ca-app-pub-3940256099942544~3347511713";
-        string adUnitId = "ca-app-pub-3940256099942544/6300978111";
+            string appId = "ca-app-pub-3940256099942544~3347511713";
+            string adUnitId = "ca-app-pub-3940256099942544/6300978111";
 #elif UNITY_IPHONE
         string appId = "ca-app-pub-3940256099942544~1458002511";
         string adUnitId = "ca-app-pub-3940256099942544/2934735716";
@@ -23,21 +25,22 @@ public class GoogleMobileAdsDemo : MonoBehaviour
         string adUnitId = "unexpected_platform";
 #endif
 
-        // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize(appId);
-  
-
-        // Create a 320x50 banner at the top of the screen.
-        bannerView = new BannerView(adUnitId, AdSize.Banner, AdPosition.Top);
+            // Initialize the Google Mobile Ads SDK.
+            MobileAds.Initialize(appId);
 
 
-        // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
+            // Create a 320x50 banner at the top of the screen.
+            bannerView = new BannerView(adUnitId, AdSize.Banner, AdPosition.Top);
 
-        // Load the banner with the request.
-        bannerView.LoadAd(request);
 
-        bannerView.Show();
+            // Create an empty ad request.
+            AdRequest request = new AdRequest.Builder().Build();
+
+            // Load the banner with the request.
+            bannerView.LoadAd(request);
+
+            bannerView.Show();
+        }
     }
 
     public void HideBanner()
@@ -46,29 +49,42 @@ public class GoogleMobileAdsDemo : MonoBehaviour
     }
 
 
-public void RequestInterstitial()
-{
+public void RequestGameQuitInterstitial()
+    {
+        if (Application.internetReachability != NetworkReachability.NotReachable)  //only show ads when online
+        {
 #if UNITY_ANDROID
-        string appId = "ca-app-pub-3940256099942544~3347511713";
-        string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+            string appId = "ca-app-pub-3940256099942544~3347511713";
+            string adUnitId = "ca-app-pub-3940256099942544/1033173712";
 #elif UNITY_IPHONE
-        string appId = "ca-app-pub-3940256099942544~1458002511";
-        string adUnitId = "ca-app-pub-3940256099942544/4411468910";
+    string appId = "ca-app-pub-3940256099942544~1458002511";
+    string adUnitId = "ca-app-pub-3940256099942544/4411468910";
 #else
-        string appId = "unexpected_platform";
-        string adUnitId = "unexpected_platform";
+    string appId = "unexpected_platform";
+    string adUnitId = "unexpected_platform";
 #endif
 
-    // Initialize the Google Mobile Ads SDK.
-    MobileAds.Initialize(appId);
+            // Initialize the Google Mobile Ads SDK.
+            MobileAds.Initialize(appId);
 
-    // Initialize an InterstitialAd.
-    interstitial = new InterstitialAd(adUnitId);
-    interstitial.OnAdClosed += HideQuit;
-    // Create an empty ad request.
-    AdRequest request = new AdRequest.Builder().Build();
-    // Load the interstitial with the request.
-    interstitial.LoadAd(request);   
+            // Initialize an InterstitialAd.
+            interstitial = new InterstitialAd(adUnitId);
+            interstitial.OnAdClosed += HideQuit;
+            // Create an empty ad request.
+            AdRequest request = new AdRequest.Builder().Build();
+            // Load the interstitial with the request.
+            interstitial.LoadAd(request);
+            while (!interstitial.IsLoaded())
+            {
+                //wait .. This ugly! 
+            }
+
+            interstitial.Show();
+        }
+        else
+        {
+            Application.Quit();  //assumes interstital only used on quit game!
+        }
 }
 
     public void HideInterstitial()
